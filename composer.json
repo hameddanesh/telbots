@@ -1,6 +1,12 @@
 {
     "name": "hameddanesh/telbots",
+    "type": "project",
     "description": "A PHP Framework for developing Telegram Bots.",
+    "keywords": [
+        "framework",
+        "telegram",
+        "bot"
+    ],
     "autoload": {
         "psr-4": {
             "TelBots\\": "./"
