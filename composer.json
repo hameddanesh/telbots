@@ -1,0 +1,16 @@
+{
+    "name": "hameddanesh/telbots",
+    "description": "A PHP Framework for developing Telegram Bots.",
+    "autoload": {
+        "psr-4": {
+            "TelBots\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "hameddanesh",
+            "email": "hameddanesh94@gmail.com"
+        }
+    ],
+    "require": {}
+}
