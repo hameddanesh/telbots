@@ -3,7 +3,7 @@
 $database = array();
 $database['dbms'] = 'mysql';
 $database['host'] = 'localhost';
-$database['dbname'] = 'telbots_db';
+$database['dbname'] = '';
 $database['username'] = 'root';
 $database['password'] = '';
 $database['charset'] = 'utf8mb4';

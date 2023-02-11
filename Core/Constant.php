@@ -1,6 +1,6 @@
 <?php
 
-namespace TelBots\Core;
+namespace Telbots\Core;
 
 class Constant
 {
@@ -12,7 +12,7 @@ class Constant
             define('QUERY_STATE_ERROR', 'error');
             define('QUERY_STATE_NEW_USER', 'new_user');
 
-            define('NO_KEYBOARD', 'no_keyboard');
+            define('NO_KEYBOARD', array());
             self::$defined = true;
         }
     }
