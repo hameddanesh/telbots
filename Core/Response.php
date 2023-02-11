@@ -1,6 +1,6 @@
 <?php
 
-namespace TelBots\Core;
+namespace Telbots\Core;
 
 class Response
 {

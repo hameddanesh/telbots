@@ -1,7 +1,6 @@
 <?php
 
-use TelBots\Core\Bot;
-use TelBots\Models\UserModel;
+use Telbots\Core\Bot;
 
 require_once '../vendor/autoload.php';
 require_once './config.php';
@@ -9,4 +8,4 @@ require_once './config.php';
 $bot = new Bot();
 $bot->route("/start", 'HomePageController');
 $bot->route("Home", 'HomePageController');
-$bot->route("🤔 whats next?", 'NextStepController');
+$bot->route("🤔 what's next?", 'NextStepController');

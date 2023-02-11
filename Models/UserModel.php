@@ -2,7 +2,7 @@
 
 namespace TelBots\Models;
 
-use TelBots\Core\Model;
+use Telbots\Core\Model;
 
 class UserModel extends Model
 {
@@ -14,18 +14,20 @@ class UserModel extends Model
     public function fetchUser($chatId, $telUsername, $telFullname)
     {
         $this->init("SELECT * FROM `tb.users` WHERE chatId = ?");
-        $this->stmt->execute([$chatId]);
-        $numRows = $this->stmt->rowCount();
+        if ($this->queryState === QUERY_STATE_SUCCESS) {
+            $this->stmt->execute([$chatId]);
+            $numRows = $this->stmt->rowCount();
 
-        if ($numRows == 1) {
-            $this->user = $this->stmt->fetchAll();
-            $this->queryState = QUERY_STATE_SUCCESS;
-        } else if ($numRows == 0) {
-            $this->queryState = QUERY_STATE_NEW_USER;
-            $this->registerUser($chatId, $telUsername, $telFullname);
-        } else {
-            $this->queryState = QUERY_STATE_ERROR;
+            if ($numRows == 1) {
+                $this->user = $this->stmt->fetchAll();
+                $this->queryState = QUERY_STATE_SUCCESS;
+            } else if ($numRows == 0) {
+                $this->queryState = QUERY_STATE_NEW_USER;
+                $this->registerUser($chatId, $telUsername, $telFullname);
+            }
+            return;
         }
+        $this->queryState = QUERY_STATE_ERROR;
     }
 
     public function registerUser($chatId, $telUsername, $telFullname)
