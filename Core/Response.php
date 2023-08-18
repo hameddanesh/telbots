@@ -4,6 +4,13 @@ namespace Telbots\Core;
 
 class Response
 {
+    private string $accessKey;
+
+    public function __construct($accessKey)
+    {
+        $this->accessKey = $accessKey;
+    }
+
     public function makeMenu(int $chatId, string $text, array $keyboard = null)
     {
         if ($keyboard != null && sizeof($keyboard) > 0) {
@@ -21,7 +28,7 @@ class Response
             'chat_id' => $chatId,
             'reply_markup' => $reply
         ];
-        file_get_contents(API_URL . "sendMessage?" . http_build_query($data));
+        file_get_contents($this->accessKey . "sendMessage?" . http_build_query($data));
     }
 
     public function makeList(int $chatId, string $text, array $keyboard = null)
@@ -34,7 +41,7 @@ class Response
             'disable_web_page_preview' => true,
             'reply_markup' => $reply
         ];
-        file_get_contents(API_URL . "sendMessage?" . http_build_query($data));
+        file_get_contents($this->accessKey . "sendMessage?" . http_build_query($data));
     }
 
     public function sendPhoto(int $chatId, string $url, string $caption)
@@ -49,6 +56,6 @@ class Response
             'reply_markup' => $reply,
         ];
 
-        file_get_contents(API_URL . "sendPhoto?" . http_build_query($data));
+        file_get_contents($this->accessKey . "sendPhoto?" . http_build_query($data));
     }
 }

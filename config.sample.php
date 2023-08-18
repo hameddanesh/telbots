@@ -8,6 +8,7 @@ $database['username'] = 'root';
 $database['password'] = '';
 $database['charset'] = 'utf8mb4';
 
-define('DATABASE', $database);
-define('BOT_TOKEN', '');
-define('API_URL', 'https://api.telegram.org/bot' . BOT_TOKEN . '/');
+$config = array();
+$config['DATABASE'] = $database;
+$config['BOT_TOKEN'] = '';
+$config['API_URL'] = 'https://api.telegram.org/bot' . $config['BOT_TOKEN'] . '/';

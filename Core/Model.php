@@ -12,26 +12,24 @@ class Model
     public array $errors = [];
     public string $queryState;
 
-    private function connect(): bool
+    public function connect($database): bool
     {
         try {
-            $this->pdo = new PDO(DATABASE['dbms'] . ':host=' . DATABASE['host'] . ';dbname=' . DATABASE['dbname'], DATABASE['username'], DATABASE['password']);
+            $this->pdo = new PDO($database['dbms'] . ':host=' . $database['host'] . ';dbname=' . $database['dbname'], $database['username'], $database['password']);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return true;
         } catch (PDOException $e) {
-            echo 'Connection failed: ' . $e->getMessage();
+            echo '⛔ database connection failed! ⛔';
         }
         return false;
     }
 
-    public function init(string $query)
+    public function init($database, string $query)
     {
-        if ($this->connect()) {
+        if ($this->connect($database)) {
             $this->stmt = $this->pdo->prepare($query);
             $this->queryState = QUERY_STATE_SUCCESS;
             return $this->stmt;
-        } else {
-            $this->queryState = QUERY_STATE_ERROR;
-        }
+        } else $this->queryState = QUERY_STATE_ERROR;
     }
 }
